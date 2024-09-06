@@ -1,66 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align=center>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+|    NRP     |      Name      |
+| :--------: | :------------: |
+| 5025221253 | Farel Hanif Andaru |
 
-## About Laravel
+# Laporan Tugas Section 3
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+</div>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Daftar Perubahan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Routing
 
-## Learning Laravel
+- Tailwind Navbar
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Blade Components
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Routing
 
-## Laravel Sponsors
+- web.php
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    Pada proyek ini dilakukan routing pada web.php, halaman yang tersedia diantaranya adalah: home sebagai halaman default, halaman blog yang berisi artikel, about berisi perkenalan sederhana dan contact berisi contact saya sendiri
 
-### Premium Partners
+    ```php
+    Route::get('/', function () {
+        return view('home', ['title' => 'Home Page']);
+    });
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    Route::get('/blog', function () {
+        return view('blog', ['title' => 'Blog']);
+    });
 
-## Contributing
+    Route::get('/contact', function () {
+        return view('contact', ['title' => 'My Contact', 'nama' => 'Farel Hanif Andaru', 'email' => 'farelhanifandaru@gmail.com', 'nohp' => '082233878635']);
+    });
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    Route::get('/about', function () {
+        return view('about', ['title' => 'About']);
+    });
+    ```
+    Hal ini dapat dicapai dengan menyertakan file blade.php pada view untuk dilakukan rendering saat link tertentu pada web.php diakses. Selain melakukan routing pada web.php ini saya juga melakukan passing array to string yang nantinya akan mempermudah penggunakan komponen blade.
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Tailwind Navbar
+- Template Tailwind
+    
+    Setelah melakukan instalasi tailwind sesuai dokumentasi pada situs resmi tailwind agar dapat terintegrasi pada laravel saya menggunakan komponen template yang tersedia secara gratis pada situs tailwind dalam bentuk navigation bar.
 
-## Security Vulnerabilities
+- Halmaan Navbar
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Seperti routing sebelumnya, setiap halaman memiliki blade.php yang berbeda beda. isi dari setiap halaman menyesuaikan dengan tugas pada video yang diberikan pada section ini.
 
-## License
+    Halaman Home:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    Halaman Blog:
+
+    Halaman About:
+
+    Halaman Contact:
+
+### Blade Components
+
+- Header
+    
+    file ini akan menampilkan header pada setiap halaman sesuai dengan string yang sebelumnya di-passing pada web.php
+
+- Layout
+
+    file ini menampung doctype html setiap halaman, agar tidak melakukan perulangan maka dibuatlah komponen layout yang nantinya dapat dimodifikasi sesuai dengan parameter yang di-passing pada setiap halaman. File ini akan memanggil file navbar untuk menampilkan navbar tailwind yang sebelumnya sudah diinstall.
+
+- Navbar
+
+    file ini berisi template tailwind yang dipakai, sebelumnya saya lakukan modifikasi sesuai instruksi situs resmi tailwind agar template ini dapat bekerja, selain itu saya juga memodifikasi button pada template ini agar dapat bekerja dengan benar sesuai dengan halaman yang saya punya.
+
+- Navlink
+
+    file ini berisi pewarnaan button pada navbar, perilaku button pada navbar akan berubah ketika tidak dalam halaman tersebut, ketika pada halaman tersebut, dan ketika mouse di-hover pada button tersebut. komponen ini akan mengecek halaman apa yang sedang dibuka sekarang dan mengganti perilaku button tersebut menggunakan fungsi bawaan dari laravel.
