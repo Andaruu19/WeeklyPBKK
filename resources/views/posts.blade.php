@@ -6,8 +6,11 @@
     <a href="/posts/{{ $post['slug'] }}">
       <h2 class="mb-1 text-3xl tracking-tight font-bold text-gray-900 hover:underline">{{ $post['title'] }}</h2>
     </a>
-    <div class="text-base text-gray-500">
-      <a href="#">{{ $post['author'] }}</a> | {{ $post->created_at->format('j F Y') }}
+    <div>
+      <span>By </span>
+      <a href="/authors/{{ $post->author->username }}" class="hover:underline text-base text-gray-500">{{ $post->author->name }}</a> 
+      <span>In category</span>
+      <a href="/categories/{{ $post->category->slug }}" class="hover:underline text-base text-gray-500">{{ $post->category->name }}</a> | {{ $post->created_at->format('j F Y') }}
     </div>
     <p class="my-5 font-light">{{ Str::limit($post['body'],200) }}</p>
     <a href="/posts/{{ $post['slug'] }}" class="font-medium text-blue-500 hover:underline">Read More &raquo;</a>
